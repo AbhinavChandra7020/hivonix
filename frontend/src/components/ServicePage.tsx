@@ -11,14 +11,16 @@ interface Section {
   description: string;
   points: string[];
   pricingTable?: PricingItem[];
+  image?: string; // ✅ Image support
 }
 
 interface ServicePageProps {
   title: string;
   sections: Section[];
+  children?: React.ReactNode;
 }
 
-const ServicePage: React.FC<ServicePageProps> = ({ title, sections }) => {
+const ServicePage: React.FC<ServicePageProps> = ({ title, sections, children }) => {
   return (
     <div className="min-h-screen px-4 py-20 text-white bg-black relative overflow-hidden">
       {/* Blue background glow */}
@@ -39,6 +41,15 @@ const ServicePage: React.FC<ServicePageProps> = ({ title, sections }) => {
             key={sectionIndex}
             className="bg-zinc-900 p-8 rounded-2xl shadow-lg border border-blue-900 mb-12"
           >
+            {/* ✅ Full-width image inside the section box */}
+            {section.image && (
+              <img
+                src={section.image}
+                alt={section.title}
+                className="w-full rounded-xl mb-6"
+              />
+            )}
+
             <h2 className="text-2xl font-semibold mb-4 text-blue-800">{section.title}</h2>
             <p className="mb-6 text-zinc-300">{section.description}</p>
 
@@ -87,6 +98,8 @@ const ServicePage: React.FC<ServicePageProps> = ({ title, sections }) => {
             )} */}
           </div>
         ))}
+
+        {children}
       </motion.div>
 
       {/* Glow animation */}

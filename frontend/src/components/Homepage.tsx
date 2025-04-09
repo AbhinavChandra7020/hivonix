@@ -124,11 +124,11 @@ const Homepage: React.FC = () => {
 
   const ServiceItem: React.FC<ServiceItemProps> = ({ title, description, imageSrc, isReversed }) => (
     <div
-      className={`flex flex-col ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'} gap-6 items-center mb-12`}
+      className={`flex flex-col ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 items-center mb-16`}
       data-aos="fade-up"
     >
       <div className="w-full md:w-1/3">
-        <div className="aspect-square bg-blue-900 rounded-lg overflow-hidden shadow-lg relative">
+        <div className="aspect-square bg-blue-900 rounded-lg overflow-hidden shadow-xl relative">
           <div className="absolute inset-0 bg-blue-500 opacity-20 blur-md"></div>
           {imageSrc ? (
             <img
@@ -144,8 +144,13 @@ const Homepage: React.FC = () => {
         </div>
       </div>
       <div className="w-full md:w-2/3">
-        <h3 className="text-2xl font-bold text-white mb-3">{title}</h3>
-        <p className="text-white text-opacity-80">{description}</p>
+        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">{title}</h3>
+        <p className="text-lg md:text-xl text-white text-opacity-90 leading-relaxed">{description}</p>
+        <div className="mt-4">
+          <button className="text-blue-400 hover:text-blue-300 font-medium text-lg transition duration-300 flex items-center gap-1">
+            Learn more <span className="ml-1">→</span>
+          </button>
+        </div>
       </div>
     </div>
   );

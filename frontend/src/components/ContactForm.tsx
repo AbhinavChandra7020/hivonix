@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { schemas } from '../../../common/schemas/schemas'
+import { z } from 'zod';
+
 
 const ContactForm: React.FC = () => {
   const [data, setData] = useState({
@@ -21,6 +24,13 @@ const ContactForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const result = schemas.safeParse(data);
+    if (!result.success) {
+      alert('Please fill out all fields correctly.');
+      console.log(result.error.format());
+      return;
+    }
+
     try {
       await fetch(
         'https://script.google.com/macros/s/AKfycbwSwUOSIMzGRUbYMgcV2AS_ybtp-4veqYf8bjq-WUprI1bppZCFW3_pdhAEVu8khyM/exec',
@@ -29,13 +39,11 @@ const ContactForm: React.FC = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          // NOTE: This will avoid CORS preflight error but also gives you no response object to inspect.
           mode: 'no-cors',
-          body: JSON.stringify({ name, email, phone, role, university, message }),
+          body: JSON.stringify(result.data),
         }
       );
 
-      // Since no-cors mode doesn’t give you a real response, we optimistically assume success
       alert('Message sent successfully!');
       setData({
         name: '',
@@ -85,7 +93,7 @@ const ContactForm: React.FC = () => {
             <input
               type="tel"
               name="phone"
-              placeholder="123-456-7890"
+              placeholder="1234567890"
               className="w-full px-4 py-2 rounded-md border-2 border-blue-900 focus:outline-none focus:border-blue-500 bg-black text-white"
               value={phone}
               onChange={handleChange}
