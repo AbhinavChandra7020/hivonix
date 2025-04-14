@@ -17,6 +17,7 @@ import ValueAddedProgram from './pages/ValueAddedProgram';
 import Internship from './pages/Internship';
 import DroneLabSetup from './pages/DroneLabSetup';
 import VideoCourses from './pages/VideoCourses';
+import BhoslaWorkshop from './pages/BhoslaWorkshop';
 
 function App() {
   useEffect(() => {
@@ -42,6 +43,9 @@ function App() {
         <Route path="/services/internship" element={<Internship />} />
         <Route path="/services/drone-lab-setup" element={<DroneLabSetup />} />
         <Route path="/services/video-courses" element={<VideoCourses />} />
+        
+        {/* Workshop Detail Pages */}
+        <Route path="/BhoslaWorkshop" element={<BhoslaWorkshop />} />
       </Routes>
     </Router>
   );

@@ -11,7 +11,6 @@ import workshopImage from '../assets/drone-workshop.png';
 import droneParts from '../assets/drone-parts.png';
 import agriDrone from '../assets/agri-drone.png';
 
-import ServicesSection from './ServicesSection';
 import ContactForm from './ContactForm';
 import Footer from './Footer';
 
@@ -146,11 +145,6 @@ const Homepage: React.FC = () => {
       <div className="w-full md:w-2/3">
         <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">{title}</h3>
         <p className="text-lg md:text-xl text-white text-opacity-90 leading-relaxed">{description}</p>
-        <div className="mt-4">
-          <button className="text-blue-400 hover:text-blue-300 font-medium text-lg transition duration-300 flex items-center gap-1">
-            Learn more <span className="ml-1">→</span>
-          </button>
-        </div>
       </div>
     </div>
   );
